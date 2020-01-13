@@ -1,0 +1,31 @@
+<!doctype html>
+<html ng-app="mainApp">
+
+<head>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-controller="mainController">
+    <div ng-show="showForm">
+        <form>
+            <div class="form-group">
+                <h2 for="username">GitHub UserName</h2>
+                <input type="text" class="form-control" id="username" name="username" ng-model="username" required>
+            </div>
+            <button type="submit" class="btn btn-success" ng-click="searchUser()">Search User</button>
+        </form>
+    </div>
+    <div ng-show="showProjects">
+        Repositories of {{userDetails.name}}
+        <ul>
+            <li ng-repeat="repo in userRepoDetails" ng-click="getReadmeUrl(repo.url)">
+                {{repo.name}}
+            </li>
+        </ul>
+    </div>
+    <div ng-show="showReadmeContent" ng-bind-html="readme"></div>
+    <script src="https://rawgit.com/chjj/marked/master/lib/marked.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>
